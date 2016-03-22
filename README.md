@@ -16,4 +16,6 @@ On shutdown:
 python working_hours_tracker.py --shutdown
 ```
 
-How to execute scripts on startup and shutdown on windows: http://stackoverflow.com/questions/12434863/executing-a-batch-script-on-windows-shutdown
+How to execute scripts on startup and shutdown on windows: 
+http://www.computerhope.com/issues/ch000322.htm
+http://stackoverflow.com/questions/12434863/executing-a-batch-script-on-windows-shutdown
