@@ -1,0 +1,1 @@
+python working_hours_tracker.py --shutdown
