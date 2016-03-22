@@ -7,11 +7,11 @@ https://www.sqlite.org/index.html
 http://www.tutorialspoint.com/sqlite/sqlite_installation.htm
 
 On startup:
-'''
+```
 python working_hours_tracker.py --startup
-'''
+```
 
 On shutdown:
-'''
+```
 python working_hours_tracker.py --shutdown
-'''
+```
