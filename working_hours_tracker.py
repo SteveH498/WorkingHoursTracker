@@ -31,9 +31,8 @@ def main(argv):
     parser = argparse.ArgumentParser(description="save startup or shutdown time stamps")    
     parser.add_argument("--startup", action="store_true", help="save startup time stamp")
     parser.add_argument("--shutdown", action="store_true", help="save shutdown time stamp")    
-    parser.add_argument("--config",help="supply configuration as JSON file")
     args = parser.parse_args()
-    
+    # Insert time stamp
     insert_timestamp(args)       
 
 if __name__ == '__main__':
