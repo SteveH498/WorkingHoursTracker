@@ -28,10 +28,10 @@ def insert_timestamp(args):
     conn.close()
 
 def main(argv):
-    parser = argparse.ArgumentParser(description="Save startup or shutdown time stamps")    
-    parser.add_argument("--startup", action="store_true", help="Save startup time stamp")
-    parser.add_argument("--shutdown", action="store_true", help="Save shutdown time stamp")    
-    parser.add_argument("--config",help="Supply configuration as JSON file")
+    parser = argparse.ArgumentParser(description="save startup or shutdown time stamps")    
+    parser.add_argument("--startup", action="store_true", help="save startup time stamp")
+    parser.add_argument("--shutdown", action="store_true", help="save shutdown time stamp")    
+    parser.add_argument("--config",help="supply configuration as JSON file")
     args = parser.parse_args()
     
     insert_timestamp(args)       
