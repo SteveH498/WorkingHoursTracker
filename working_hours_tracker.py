@@ -20,8 +20,8 @@ def insert_timestamp(args):
     # Insert time stamp into sqlite db
     conn = sqlite3.connect("working_hours.db")
     c = conn.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS startups_shutdowns (timestamp TEXT, is_startup INTEGER)")
-    c.execute("INSERT INTO startups_shutdowns VALUES (datetime('now'),?)", (is_startup_bin, ))
+    c.execute("CREATE TABLE IF NOT EXISTS startups_shutdowns (date TEXT, time TEXT, is_startup INTEGER)")
+    c.execute("INSERT INTO startups_shutdowns VALUES (date('now','localtime'),time('now','localtime'),?)", (is_startup_bin, ))
     
     # Save (commit) the changes
     conn.commit()
