@@ -1,4 +1,4 @@
-# WorkingHoursTracker
+# Working Hours Tracker
 Python script for automatic logging of working start and end times on OS startup and shutdown.
 The stored time stamps can then be used to calculate the total working time.
 
@@ -8,11 +8,13 @@ http://www.tutorialspoint.com/sqlite/sqlite_installation.htm
 
 On startup:
 ```
+cd <location of the script>
 python working_hours_tracker.py --startup
 ```
 
 On shutdown:
 ```
+cd <location of the script>
 python working_hours_tracker.py --shutdown
 ```
 
