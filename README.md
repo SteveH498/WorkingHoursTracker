@@ -6,6 +6,10 @@ Prerequisite for using the script is the presence of a locally installed sqlite 
 https://www.sqlite.org/index.html
 http://www.tutorialspoint.com/sqlite/sqlite_installation.htm
 
+and:
+
+Python 3.5.0 |Anaconda 2.4.0 (64-bit)
+
 On startup:
 ```
 cd <location of the script>
