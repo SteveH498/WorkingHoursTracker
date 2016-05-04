@@ -1,11 +1,12 @@
-import sys, argparse, sqlite3
+import sys, argparse, sqlite3, requests
 
-
-
-def insert_timestamp(args):
+def _insert_timestamp(args):
     ''' Insert either startup or shutdown time stamp into sqlite database working_hours.db '''    
     is_startup = args.startup
     is_shutdown = args.shutdown
+    http_proxy = args.http_proxy
+    https_proxy = args.https_proxy
+    
     is_startup_bin = 1
     # Determine whether this is a startup or shutdown execution and set the startup field accordingly
     if is_startup and is_shutdown:
@@ -17,23 +18,41 @@ def insert_timestamp(args):
     else:
         raise ValueError('--startup or --shutdown flag must be set')
     
+    proxy = check_if_proxy_available(http_proxy,https_proxy)
+                
     # Insert time stamp into sqlite db
     conn = sqlite3.connect("working_hours.db")
     c = conn.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS startups_shutdowns (date TEXT, time TEXT, is_startup INTEGER)")
-    c.execute("INSERT INTO startups_shutdowns VALUES (date('now','localtime'),time('now','localtime'),?)", (is_startup_bin, ))
+    c.execute("CREATE TABLE IF NOT EXISTS startups_shutdowns_computer (date TEXT, time TEXT, is_startup INTEGER, proxy TEXT)")
+    c.execute("INSERT INTO startups_shutdowns_computer VALUES (date('now','localtime'),time('now','localtime'),?,?)", (is_startup_bin, proxy,))
     
     # Save (commit) the changes
     conn.commit()
     conn.close()
 
+
+def check_if_proxy_available(http_proxy,https_proxy):
+    proxies = {
+        "http": http_proxy,
+        "https": https_proxy,
+    }    
+    proxy = proxies["http"]
+    try:
+        requests.get('http://www.google.com', proxies=proxies,timeout=0.001)      
+    except:
+        proxy = ""    
+    return proxy
+    
+
 def main(argv):
     parser = argparse.ArgumentParser(description="save startup or shutdown time stamps")    
     parser.add_argument("--startup", action="store_true", help="save startup time stamp")
     parser.add_argument("--shutdown", action="store_true", help="save shutdown time stamp")    
+    parser.add_argument("--http_proxy", help="http proxy") 
+    parser.add_argument("--https_proxy", help="https proxy") 
     args = parser.parse_args()
     # Insert time stamp
-    insert_timestamp(args)       
+    _insert_timestamp(args)       
 
 if __name__ == '__main__':
     main(sys.argv[1:])
