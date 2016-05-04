@@ -10,13 +10,13 @@ http://www.tutorialspoint.com/sqlite/sqlite_installation.htm
 On startup:
 ```
 cd <location of the script>
-python working_hours_tracker.py --startup
+python working_hours_tracker.py --startup --http_proxy HTTP_PROXY --https_proxy HTTPS_PROXY
 ```
 
 On shutdown:
 ```
 cd <location of the script>
-python working_hours_tracker.py --shutdown
+python working_hours_tracker.py --shutdown --http_proxy HTTP_PROXY --https_proxy HTTPS_PROXY
 ```
 
 Probably the easiest way to schedule the script for execution on startup and shutdown on Windows is to register it within the Task Scheduler.
